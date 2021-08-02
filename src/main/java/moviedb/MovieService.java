@@ -29,7 +29,7 @@ public class MovieService {
     public List<MovieDTO> listMovies(Optional<String> search) {
         return movieRepository.findAll().stream()
                 .filter(movie -> search.isEmpty() || movie.getTitle().toLowerCase().contains(search.get().toLowerCase()))
-                .map(author -> modelMapper.map(author,MovieDTO.class))
+                .map(movie -> modelMapper.map(movie,MovieDTO.class))
                 .collect(Collectors.toList());
     }
     @Transactional
