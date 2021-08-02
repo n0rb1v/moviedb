@@ -26,7 +26,7 @@ public class ActorService {
     }
     @Transactional
     public ActorDTO updateActor(long id, CreateCastCommand command) {
-        Actor actor = actorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Actor actor = actorRepository.findById(id).orElseThrow(() -> new ActorNotFoundException());
         actor.setName(command.getName());
         actor.setCountry(command.getCountry());
         actor.setYearOfBirth(command.getYearOfBirth());

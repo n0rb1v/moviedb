@@ -34,7 +34,7 @@ public class MovieService {
     }
     @Transactional
     public MovieDTO updateMovie(long id, CreateMovieCommand command) {
-        Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new MovieNotFoundException());
         movie.setTitle(command.getTitle());
         movie.setDescription(command.getDescription());
         movie.setCountry(command.getCountry());
@@ -44,25 +44,25 @@ public class MovieService {
     }
     @Transactional
     public MovieDTO addRate(MovieRateCommand command,long id) {
-        Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new MovieNotFoundException());
         movie.addRating(command.getRate());
         return modelMapper.map(movie,MovieDTO.class);
     }
     @Transactional
     public MovieDTO addGenre(MovieGenreCommand command,long id) {
-        Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new MovieNotFoundException());
         movie.addGenre(command.getGenre());
         return modelMapper.map(movie,MovieDTO.class);
     }
     @Transactional
     public MovieDTO addDirector(CreateCastCommand command, long id) {
-        Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new MovieNotFoundException());
         movie.addDirector(new Director(command.getName(), command.getCountry(), command.getYearOfBirth(), command.getBiography()));
         return modelMapper.map(movie,MovieDTO.class);
     }
     @Transactional
     public MovieDTO addActor(CreateCastCommand command, long id) {
-        Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new MovieNotFoundException());
         List<Actor> result = actorService.listActorsServ();
         Actor actor = new Actor(command.getName(), command.getCountry(), command.getYearOfBirth(), command.getBiography());
         if (result.contains(actor)) {
