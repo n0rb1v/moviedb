@@ -22,16 +22,19 @@ public class Movie {
     private LocalDate release;
     private int length;
     @ElementCollection
-    private List<Genre> genres;
+    private List<Genre> genres = new ArrayList<>();
     @ElementCollection
-    private List<Integer> rating;
+    private List<Integer> rating = new ArrayList<>();
     @OneToMany(mappedBy = "movie")
     private List<Director> directors = new ArrayList<>();
     @ManyToMany(mappedBy = "movies")
     private List<Actor> actors = new ArrayList<>();
 
-    public Movie(String title, String country) {
+    public Movie(String title, String description, String country, LocalDate release, int length) {
         this.title = title;
+        this.description = description;
         this.country = country;
+        this.release = release;
+        this.length = length;
     }
 }
