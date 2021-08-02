@@ -25,8 +25,8 @@ public class MovieController {
     }
     @GetMapping
     @Operation(summary = "list of the movies")
-    public List<MovieDTO> listAuthors(@RequestParam Optional<String> search) {
-        return movieService.listAuthors(search);
+    public List<MovieDTO> listMovies(@RequestParam Optional<String> search) {
+        return movieService.listMovies(search);
     }
     @PutMapping("/{id}")
     @Operation(summary = "update movie data")

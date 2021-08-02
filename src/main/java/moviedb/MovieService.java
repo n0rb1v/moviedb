@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -14,6 +13,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class MovieService {
     private final MovieRepository movieRepository;
+    private final ActorService actorService;
     private final ModelMapper modelMapper;
 
     public MovieDTO createMovie(CreateMovieCommand command) {
@@ -26,7 +26,7 @@ public class MovieService {
         movieRepository.save(movie);
         return modelMapper.map(movie,MovieDTO.class);
     }
-    public List<MovieDTO> listAuthors(Optional<String> search) {
+    public List<MovieDTO> listMovies(Optional<String> search) {
         return movieRepository.findAll().stream()
                 .filter(movie -> search.isEmpty() || movie.getTitle().toLowerCase().contains(search.get().toLowerCase()))
                 .map(author -> modelMapper.map(author,MovieDTO.class))
@@ -63,7 +63,12 @@ public class MovieService {
     @Transactional
     public MovieDTO addActor(CreateCastCommand command, long id) {
         Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
-        movie.addActor(new Actor(command.getName(), command.getCountry(), command.getYearOfBirth(), command.getBiography()));
+        List<Actor> result = actorService.listActorsServ();
+        Actor actor = new Actor(command.getName(), command.getCountry(), command.getYearOfBirth(), command.getBiography());
+        if (result.contains(actor)) {
+            actor = result.get(result.indexOf(actor));
+        }
+        movie.addActor(actor);
         return modelMapper.map(movie,MovieDTO.class);
     }
     public void deleteMovie(long id) {
