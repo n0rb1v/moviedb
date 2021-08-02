@@ -19,12 +19,19 @@ public class Actor {
     private Long id;
     private String name;
     private String country;
-    private LocalDate yearOfBirth;
+    private int yearOfBirth;
     private String biography;
     @ManyToMany
     private List<Movie> movies;
 
     public Actor(String name) {
         this.name = name;
+    }
+
+    public Actor(String name, String country, int yearOfBirth, String biography) {
+        this.name = name;
+        this.country = country;
+        this.yearOfBirth = yearOfBirth;
+        this.biography = biography;
     }
 }

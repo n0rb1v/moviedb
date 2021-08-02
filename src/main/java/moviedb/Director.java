@@ -18,12 +18,15 @@ public class Director {
     private Long id;
     private String name;
     private String country;
-    private LocalDate yearOfBirth;
+    private int yearOfBirth;
     private String biography;
     @ManyToOne
     private Movie movie;
 
-    public Director(String name) {
+    public Director(String name, String country, int yearOfBirth, String biography) {
         this.name = name;
+        this.country = country;
+        this.yearOfBirth = yearOfBirth;
+        this.biography = biography;
     }
 }

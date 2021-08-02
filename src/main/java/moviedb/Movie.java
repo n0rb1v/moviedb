@@ -24,6 +24,7 @@ public class Movie {
     private LocalDate reldate;
     private int length;
     @ElementCollection
+    @Enumerated(EnumType.STRING)
     private List<Genre> genres = new ArrayList<>();
     @ElementCollection
     private List<Integer> rates = new ArrayList<>();

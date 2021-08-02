@@ -22,9 +22,28 @@ public class MovieService {
         return modelMapper.map(movie,MovieDTO.class);
     }
     @Transactional
-    public MovieDTO addRate(int rate,long id) {
+    public MovieDTO addRate(MovieRateCommand command,long id) {
         Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
-        movie.addRating(rate);
+        movie.addRating(command.getRate());
         return modelMapper.map(movie,MovieDTO.class);
     }
+    @Transactional
+    public MovieDTO addGenre(MovieGenreCommand command,long id) {
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        movie.addGenre(command.getGenre());
+        return modelMapper.map(movie,MovieDTO.class);
+    }
+    @Transactional
+    public MovieDTO addDirector(CreateCastCommand command, long id) {
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        movie.addDirector(new Director(command.getName(), command.getCountry(), command.getYearOfBirth(), command.getBiography()));
+        return modelMapper.map(movie,MovieDTO.class);
+    }
+    @Transactional
+    public MovieDTO addActor(CreateCastCommand command, long id) {
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        movie.addActor(new Actor(command.getName(), command.getCountry(), command.getYearOfBirth(), command.getBiography()));
+        return modelMapper.map(movie,MovieDTO.class);
+    }
+
 }

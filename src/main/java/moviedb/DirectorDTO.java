@@ -12,6 +12,6 @@ import java.time.LocalDate;
 public class DirectorDTO {
     private String name;
     private String country;
-    private LocalDate yearOfBirth;
+    private int yearOfBirth;
     private String biography;
 }
