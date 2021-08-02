@@ -33,4 +33,9 @@ public class ActorService {
         actor.setBiography(command.getBiography());
         return modelMapper.map(actor,ActorDTO.class);
     }
+
+    public ActorDTO findActorById(long id) {
+        Actor actor = actorRepository.findById(id).get();
+        return modelMapper.map(actor,ActorDTO.class);
+    }
 }

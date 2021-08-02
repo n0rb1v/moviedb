@@ -2,6 +2,7 @@ package moviedb;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -29,7 +30,7 @@ public class Movie {
     @ElementCollection
     private List<Integer> rates = new ArrayList<>();
     private double rate;
-    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<Director> directors = new ArrayList<>();
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Actor> actors = new ArrayList<>();

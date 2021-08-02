@@ -19,6 +19,11 @@ public class ActorController {
     public List<ActorDTO> listActors(@RequestParam Optional<String> search) {
         return actorService.listActors(search);
     }
+    @GetMapping("/{id}")
+    @Operation(summary = "actor data")
+    public ActorDTO findActorById(@PathVariable("id") long id){
+        return actorService.findActorById(id);
+    }
     @PutMapping("/{id}")
     @Operation(summary = "update actor data")
     public ActorDTO updateMovie(@PathVariable("id") long id, @Valid @RequestBody CreateCastCommand command){
