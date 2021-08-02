@@ -13,10 +13,12 @@ import java.time.LocalDate;
 public class CreateMovieCommand {
     @Schema(description = "title of movie",example = "Titanic")
     private String title;
+    @Schema(description = "description",example = "description")
     private String description;
     @Schema(description = "origin of movie",example = "USA")
     private String country;
-    private LocalDate release;
+    private LocalDate relDate;
     @Schema(description = "length in minutes",example = "120")
     private int length;
+
 }

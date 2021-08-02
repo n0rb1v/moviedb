@@ -14,8 +14,9 @@ public class MovieService {
         Movie movie = new Movie(command.getTitle(),
                 command.getDescription(),
                 command.getCountry(),
-                command.getRelease(),
+                command.getRelDate(),
                 command.getLength());
+        System.out.println(movie);
         movieRepository.save(movie);
         return modelMapper.map(movie,MovieDTO.class);
 
