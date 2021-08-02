@@ -5,6 +5,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class MovieService {
@@ -19,6 +24,22 @@ public class MovieService {
                 command.getLength());
         System.out.println(movie);
         movieRepository.save(movie);
+        return modelMapper.map(movie,MovieDTO.class);
+    }
+    public List<MovieDTO> listAuthors(Optional<String> search) {
+        return movieRepository.findAll().stream()
+                .filter(movie -> search.isEmpty() || movie.getTitle().toLowerCase().contains(search.get().toLowerCase()))
+                .map(author -> modelMapper.map(author,MovieDTO.class))
+                .collect(Collectors.toList());
+    }
+    @Transactional
+    public MovieDTO updateMovie(long id, CreateMovieCommand command) {
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        movie.setTitle(command.getTitle());
+        movie.setDescription(command.getDescription());
+        movie.setCountry(command.getCountry());
+        movie.setReldate(command.getRelDate());
+        movie.setLength(command.getLength());
         return modelMapper.map(movie,MovieDTO.class);
     }
     @Transactional
@@ -45,5 +66,12 @@ public class MovieService {
         movie.addActor(new Actor(command.getName(), command.getCountry(), command.getYearOfBirth(), command.getBiography()));
         return modelMapper.map(movie,MovieDTO.class);
     }
+    public void deleteMovie(long id) {
+        movieRepository.deleteById(id);
+    }
+    public void deleteAll() {
+        movieRepository.deleteAll();
+    }
+
 
 }

@@ -31,7 +31,7 @@ public class Movie {
     private double rate;
     @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
     private List<Director> directors = new ArrayList<>();
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Actor> actors = new ArrayList<>();
 
     public Movie(String title, String description, String country, LocalDate reldate, int length) {

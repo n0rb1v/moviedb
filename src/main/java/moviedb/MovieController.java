@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -20,6 +22,16 @@ public class MovieController {
     @ApiResponse(responseCode = "201",description = "movie created")
     public MovieDTO createMovie(@Valid @RequestBody CreateMovieCommand command) {
         return movieService.createMovie(command);
+    }
+    @GetMapping
+    @Operation(summary = "list of the movies")
+    public List<MovieDTO> listAuthors(@RequestParam Optional<String> search) {
+        return movieService.listAuthors(search);
+    }
+    @PutMapping("/{id}")
+    @Operation(summary = "update movie data")
+    public MovieDTO updateMovie(@PathVariable("id") long id, @Valid @RequestBody CreateMovieCommand command){
+        return movieService.updateMovie(id,command);
     }
     @PostMapping("/{id}/addrate")
     @Operation(summary = "add rating to movie")
@@ -44,5 +56,15 @@ public class MovieController {
     //@ApiResponse(responseCode = "201", description = "book created")
     public MovieDTO addActor(@PathVariable("id") long id, @Valid @RequestBody CreateCastCommand command) {
         return movieService.addActor(command, id);
+    }
+    @DeleteMapping("/{id}/delete")
+    @Operation(summary = "delete movie")
+    public void deleteMovie(@PathVariable("id") long id) {
+        movieService.deleteMovie(id);
+    }
+    @DeleteMapping("/deleteall")
+    @Operation(summary = "delete all movie")
+    public void deleteMovie() {
+        movieService.deleteAll();
     }
 }

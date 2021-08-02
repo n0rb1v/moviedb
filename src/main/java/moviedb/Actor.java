@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -21,12 +20,8 @@ public class Actor {
     private String country;
     private int yearOfBirth;
     private String biography;
-    @ManyToMany
+    @ManyToMany(mappedBy = "actors")
     private List<Movie> movies;
-
-    public Actor(String name) {
-        this.name = name;
-    }
 
     public Actor(String name, String country, int yearOfBirth, String biography) {
         this.name = name;
