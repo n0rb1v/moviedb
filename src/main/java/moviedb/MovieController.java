@@ -21,5 +21,10 @@ public class MovieController {
     public MovieDTO createMovie(@Valid @RequestBody CreateMovieCommand command) {
         return movieService.createMovie(command);
     }
-
+    @PostMapping("/{id}/rate")
+    @Operation(summary = "add rating to movie")
+    //@ApiResponse(responseCode = "201", description = "book created")
+    public MovieDTO addRate(@PathVariable("id") long id, @Valid @RequestBody MovieRateCommand command) {
+        return movieService.addRate(command.getRate(), id);
+    }
 }
