@@ -23,6 +23,7 @@ public class Actor {
     private String biography;
     @ManyToMany(mappedBy = "actors")
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Movie> movies;
 
     public Actor(String name, String country, int yearOfBirth, String biography) {

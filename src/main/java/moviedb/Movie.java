@@ -1,9 +1,6 @@
 package moviedb;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,13 +23,18 @@ public class Movie {
     private int length;
     @ElementCollection
     @Enumerated(EnumType.STRING)
+    @EqualsAndHashCode.Exclude
     private List<Genre> genres = new ArrayList<>();
     @ElementCollection
+    @EqualsAndHashCode.Exclude
     private List<Integer> rates = new ArrayList<>();
     private double rate;
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
     private List<Director> directors = new ArrayList<>();
     @ManyToMany(cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Actor> actors = new ArrayList<>();
 
     public Movie(String title, String description, String country, LocalDate reldate, int length) {

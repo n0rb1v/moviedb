@@ -62,7 +62,7 @@ public class MovieController {
     public void deleteMovie(@PathVariable("id") long id) {
         movieService.deleteMovie(id);
     }
-    @DeleteMapping("/deleteall")
+    @DeleteMapping()
     @Operation(summary = "delete all movie")
     public void deleteMovie() {
         movieService.deleteAll();
