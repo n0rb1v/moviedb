@@ -34,31 +34,31 @@ public class MovieController {
     public MovieDTO updateMovie(@PathVariable("id") long id, @Valid @RequestBody CreateMovieCommand command){
         return movieService.updateMovie(id,command);
     }
-    @PostMapping("/{id}/addrate")
+    @PostMapping("/{id}/rate")
     @Operation(summary = "add rating to movie")
     //@ApiResponse(responseCode = "201", description = "book created")
     public MovieDTO addRate(@PathVariable("id") long id, @Valid @RequestBody MovieRateCommand command) {
         return movieService.addRate(command, id);
     }
-    @PostMapping("/{id}/addgenre")
+    @PostMapping("/{id}/genre")
     @Operation(summary = "add genre to movie")
     //@ApiResponse(responseCode = "201", description = "book created")
     public MovieDTO addGenre(@PathVariable("id") long id, @Valid @RequestBody MovieGenreCommand command) {
         return movieService.addGenre(command, id);
     }
-    @PostMapping("/{id}/adddirector")
+    @PostMapping("/{id}/director")
     @Operation(summary = "add director to movie")
     //@ApiResponse(responseCode = "201", description = "book created")
     public MovieDTO addDirector(@PathVariable("id") long id, @Valid @RequestBody CreateCastCommand command) {
         return movieService.addDirector(command, id);
     }
-    @PostMapping("/{id}/addactor")
+    @PostMapping("/{id}/actor")
     @Operation(summary = "add actor to movie")
     //@ApiResponse(responseCode = "201", description = "book created")
     public MovieDTO addActor(@PathVariable("id") long id, @Valid @RequestBody CreateCastCommand command) {
         return movieService.addActor(command, id);
     }
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/{id}")
     @Operation(summary = "delete movie")
     public void deleteMovie(@PathVariable("id") long id) {
         movieService.deleteMovie(id);

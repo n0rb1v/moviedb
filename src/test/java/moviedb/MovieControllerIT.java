@@ -89,7 +89,7 @@ class MovieControllerIT {
     void testAddRating() {
         Movie m1 = movieRepository.save(new Movie("Titanic","description","USA",LocalDate.of(1997, 8, 2),180));
         MovieDTO result =
-                template.postForObject("/api/movies/"+m1.getId()+"/addrate",
+                template.postForObject("/api/movies/"+m1.getId()+"/rate",
                         new MovieRateCommand(3),
                         MovieDTO.class);
 
@@ -99,7 +99,7 @@ class MovieControllerIT {
     void testAddGenre() {
         Movie m1 = movieRepository.save(new Movie("Titanic","description","USA",LocalDate.of(1997, 8, 2),180));
         MovieDTO result =
-                template.postForObject("/api/movies/"+m1.getId()+"/addgenre",
+                template.postForObject("/api/movies/"+m1.getId()+"/genre",
                         new MovieGenreCommand(Genre.ACTION),
                         MovieDTO.class);
 
@@ -109,7 +109,7 @@ class MovieControllerIT {
     void testAddDirector() {
         Movie m1 = movieRepository.save(new Movie("Titanic","description","USA",LocalDate.of(1997, 8, 2),180));
         MovieDTO result =
-                template.postForObject("/api/movies/"+m1.getId()+"/adddirector",
+                template.postForObject("/api/movies/"+m1.getId()+"/director",
                         new CreateCastCommand("James Cameron","Canada",1954,"biography"),
                         MovieDTO.class);
 
@@ -121,7 +121,7 @@ class MovieControllerIT {
     void testAddActor() {
         Movie m1 = movieRepository.save(new Movie("Titanic","description","USA",LocalDate.of(1997, 8, 2),180));
         MovieDTO result =
-                template.postForObject("/api/movies/"+m1.getId()+"/addactor",
+                template.postForObject("/api/movies/"+m1.getId()+"/actor",
                         new CreateCastCommand("Leonardo DiCaprio","USA",1974,"biography"),
                         MovieDTO.class);
 
@@ -132,7 +132,7 @@ class MovieControllerIT {
     @Test
     void testDelete() {
         Movie m1 = movieRepository.save(new Movie("Titanic","description","USA",LocalDate.of(1997, 8, 2),180));
-        template.delete("/api/movies/"+m1.getId()+"/delete");
+        template.delete("/api/movies/"+m1.getId());
 
         List<MovieDTO> result = template.exchange(
                 "/api/movies",
@@ -159,7 +159,7 @@ class MovieControllerIT {
     @Test
     void notFoundMovieTest(){
         Problem result =
-                template.postForObject("/api/movies/1/addrate",
+                template.postForObject("/api/movies/1/rate",
                         new MovieRateCommand(3),
                         Problem.class);
 
