@@ -1,6 +1,10 @@
-package moviedb;
+package moviedb.movie;
 
 import lombok.AllArgsConstructor;
+import moviedb.CreateCastCommand;
+import moviedb.director.Director;
+import moviedb.actor.Actor;
+import moviedb.actor.ActorService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,7 +53,7 @@ public class MovieService {
         return modelMapper.map(movie,MovieDTO.class);
     }
     @Transactional
-    public MovieDTO addGenre(MovieGenreCommand command,long id) {
+    public MovieDTO addGenre(MovieGenreCommand command, long id) {
         Movie movie = movieRepository.findById(id).orElseThrow(() -> new MovieNotFoundException());
         movie.addGenre(command.getGenre());
         return modelMapper.map(movie,MovieDTO.class);

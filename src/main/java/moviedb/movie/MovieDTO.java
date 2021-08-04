@@ -1,8 +1,10 @@
-package moviedb;
+package moviedb.movie;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import moviedb.director.DirectorDTO;
+import moviedb.actor.ActorDTO;
 
 import java.time.LocalDate;
 import java.util.List;

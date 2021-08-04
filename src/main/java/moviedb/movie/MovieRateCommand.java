@@ -1,4 +1,4 @@
-package moviedb;
+package moviedb.movie;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

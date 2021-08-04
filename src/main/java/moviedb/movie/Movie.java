@@ -1,6 +1,8 @@
-package moviedb;
+package moviedb.movie;
 
 import lombok.*;
+import moviedb.director.Director;
+import moviedb.actor.Actor;
 
 import javax.persistence.*;
 import java.time.LocalDate;

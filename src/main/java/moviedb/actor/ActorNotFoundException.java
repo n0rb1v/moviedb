@@ -1,4 +1,4 @@
-package moviedb;
+package moviedb.actor;
 
 import org.zalando.problem.AbstractThrowableProblem;
 import org.zalando.problem.Status;

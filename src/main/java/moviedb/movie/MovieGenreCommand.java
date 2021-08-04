@@ -1,8 +1,9 @@
-package moviedb;
+package moviedb.movie;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import moviedb.movie.Genre;
 
 import javax.validation.constraints.NotNull;
 

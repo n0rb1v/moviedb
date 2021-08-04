@@ -1,8 +1,9 @@
-package moviedb;
+package moviedb.movie;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
+import moviedb.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

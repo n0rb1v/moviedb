@@ -1,6 +1,11 @@
-package moviedb;
+package moviedb.actor;
 
 import lombok.AllArgsConstructor;
+import moviedb.CreateCastCommand;
+import moviedb.actor.Actor;
+import moviedb.actor.ActorDTO;
+import moviedb.actor.ActorNotFoundException;
+import moviedb.actor.ActorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

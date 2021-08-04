@@ -1,7 +1,8 @@
-package moviedb;
+package moviedb.actor;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
+import moviedb.CreateCastCommand;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

@@ -1,10 +1,10 @@
-package moviedb;
+package moviedb.actor;
 
 import lombok.*;
+import moviedb.movie.Movie;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Data
