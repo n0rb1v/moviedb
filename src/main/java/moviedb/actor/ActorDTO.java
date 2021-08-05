@@ -17,5 +17,5 @@ public class ActorDTO {
     private String country;
     private int yearOfBirth;
     private String biography;
-    //private List<MovieDTO> movies;
+    private List<ActorMovieDTO> movies;
 }
